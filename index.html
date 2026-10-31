@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- The <head> holds information ABOUT the page, not what you see on it. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name · Portfolio</title>
+  <meta name="description" content="Hi, I'm Your Name. Photos, interests and what I'm learning.">
+
+  <!-- Fonts from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400&display=swap">
+
+  <!-- Our own styles live in a separate file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== Top navigation ===== -->
+  <header class="site-header">
+    <nav class="nav wrap">
+      <a class="nav-name" href="#top">Your Name</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#interests">Interests</a></li>
+        <li><a href="#photos">Photos</a></li>
+        <li><a href="#learning">Learning</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== Intro / hero ===== -->
+    <section class="hero wrap">
+      <!-- Swap this circle for a real photo:
+           <img class="avatar" src="images/me.jpg" alt="Photo of Your Name"> -->
+      <div class="avatar" aria-hidden="true">YN</div>
+      <div class="hero-text">
+        <p class="eyebrow">Based in Your Town, UK</p>
+        <h1>Hi, I'm <span class="highlight">Your Name</span>.</h1>
+        <p class="lead">I'm a curious person who likes taking photos, exploring new places, and teaching myself to code in Python. This site is where I put the things I care about.</p>
+        <a class="button" href="#contact">Say hello</a>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="section wrap">
+      <h2>About me</h2>
+      <div class="about-grid">
+        <div class="prose">
+          <p>Write two or three short paragraphs here about who you are. Where you grew up, what you do day to day, and what gets you excited.</p>
+          <p>Keep it friendly and in your own voice. Visitors want to know the real you, not a CV.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Home</dt><dd>Your Town, UK</dd></div>
+          <div><dt>Day job</dt><dd>What you do</dd></div>
+          <div><dt>Coffee or tea</dt><dd>Tea, always</dd></div>
+          <div><dt>Languages</dt><dd>English, …</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== Interests ===== -->
+    <section id="interests" class="section wrap">
+      <h2>Things I'm into</h2>
+      <ul class="interests">
+        <li>
+          <h3>Photography</h3>
+          <p>Street scenes, golden hour and the odd blurry pet. Replace with your own words.</p>
+        </li>
+        <li>
+          <h3>Coding</h3>
+          <p>Learning Python one small project at a time. This website is one of them.</p>
+        </li>
+        <li>
+          <h3>Food</h3>
+          <p>Cooking for friends and trying every curry house in town.</p>
+        </li>
+        <li>
+          <h3>Travel</h3>
+          <p>Places I've been, places on the list. Add your favourites.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== Photo gallery ===== -->
+    <section id="photos" class="section wrap">
+      <h2>Photos</h2>
+      <p class="section-note">Put your pictures in the <code>images</code> folder, then swap each placeholder for an <code>&lt;img&gt;</code> tag.</p>
+      <div class="gallery">
+        <!-- Example of a real photo:
+        <figure>
+          <img src="images/photo1.jpg" alt="Sunset over the canal">
+          <figcaption>Sunset over the canal</figcaption>
+        </figure>
+        -->
+        <figure><div class="ph ph-1"></div><figcaption>Photo one</figcaption></figure>
+        <figure><div class="ph ph-2"></div><figcaption>Photo two</figcaption></figure>
+        <figure><div class="ph ph-3"></div><figcaption>Photo three</figcaption></figure>
+        <figure><div class="ph ph-4"></div><figcaption>Photo four</figcaption></figure>
+        <figure><div class="ph ph-5"></div><figcaption>Photo five</figcaption></figure>
+        <figure><div class="ph ph-6"></div><figcaption>Photo six</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===== Learning journey ===== -->
+    <section id="learning" class="section wrap">
+      <h2>What I'm learning</h2>
+      <div class="learning-grid">
+        <ol class="timeline">
+          <li><span class="when">Step 1</span> Installed Python and wrote my first <code>print()</code></li>
+          <li><span class="when">Step 2</span> Variables, lists and loops</li>
+          <li><span class="when">Step 3</span> Built this website with HTML and CSS</li>
+          <li><span class="when">Next</span> Functions, files and a small Python project</li>
+        </ol>
+        <pre class="code" aria-label="Python example"><code><span class="c"># my first Python program</span>
+name = <span class="s">"Your Name"</span>
+hobbies = [<span class="s">"photography"</span>, <span class="s">"coding"</span>]
+
+<span class="k">for</span> hobby <span class="k">in</span> hobbies:
+    print(<span class="s">f"</span>{name}<span class="s"> likes </span>{hobby}<span class="s">"</span>)</code></pre>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="section wrap">
+      <h2>Get in touch</h2>
+      <p class="lead">The easiest way to reach me is by email.</p>
+      <div class="contact-row">
+        <span class="email" id="email">hello@example.com</span>
+        <button class="button" id="copy-btn" type="button">Copy email</button>
+      </div>
+      <ul class="socials">
+        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>© <span id="year">2026</span> Your Name. Built by hand with HTML, CSS and JavaScript.</p>
+  </footer>
+
+  <!-- JavaScript goes last so the page content loads first -->
+  <script src="script.js"></script>
+</body>
+</html>

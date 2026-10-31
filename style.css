@@ -1,0 +1,173 @@
+/* =========================================================
+   style.css — controls how the page LOOKS.
+   Layout: one centred column, sections stacked, grids that
+   collapse to a single column on phones.
+   ========================================================= */
+
+/* ---- 1. Colours and fonts as variables (change them here once) ---- */
+:root {
+  --bg: #eef1f5;        /* page background: cool pale grey-blue */
+  --surface: #ffffff;   /* cards */
+  --ink: #16213a;       /* main text: deep navy */
+  --muted: #56607a;     /* softer text */
+  --line: #d4dae5;      /* borders */
+  --accent: #0e6a86;    /* links, buttons: sea blue */
+  --accent-ink: #ffffff;
+  --sun: #e2a523;       /* the one warm highlight */
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+/* Dark mode: the browser tells us if the visitor prefers dark */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1522; --surface: #172033; --ink: #e8ecf4; --muted: #9aa5bd;
+    --line: #2a3550; --accent: #5cc1de; --accent-ink: #0b1220; --sun: #f0b93f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1522; --surface: #172033; --ink: #e8ecf4; --muted: #9aa5bd;
+  --line: #2a3550; --accent: #5cc1de; --accent-ink: #0b1220; --sun: #f0b93f;
+  color-scheme: dark;
+}
+
+/* ---- 2. Basics ---- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; }
+h3 { font-size: 1.25rem; font-weight: 700; }
+code { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* .wrap keeps content centred with space at the sides */
+.wrap {
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---- 3. Header / navigation ---- */
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 0.9rem; }
+.nav-name { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+.nav-links a:hover, .nav-links a.active { color: var(--ink); text-decoration: underline; text-decoration-color: var(--sun); text-underline-offset: 6px; text-decoration-thickness: 3px; }
+
+/* ---- 4. Hero ---- */
+.hero { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem 3rem; padding-block: 4rem 3rem; }
+.avatar {
+  width: 9rem; height: 9rem; flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-ink);
+  font-family: var(--font-display); font-size: 2.6rem; font-weight: 700;
+  box-shadow: 0 0 0 6px var(--bg), 0 0 0 9px var(--sun);
+}
+.hero-text { flex: 1 1 22rem; min-width: 0; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; color: var(--muted); margin: 0 0 0.75rem; }
+.hero h1 { font-size: clamp(2.6rem, 7vw, 4.8rem); font-weight: 700; letter-spacing: -0.02em; }
+.highlight { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--sun) 55%, transparent) 62%); }
+.lead { font-size: 1.2rem; color: var(--muted); max-width: 38rem; margin: 1.25rem 0 1.75rem; }
+
+.button {
+  display: inline-block;
+  background: var(--accent); color: var(--accent-ink);
+  border: 0; border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font: inherit; font-weight: 700;
+  text-decoration: none; cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.button:hover { transform: translateY(-2px); }
+
+/* ---- 5. Sections ---- */
+.section { padding-block: 3.5rem; border-top: 1px solid var(--line); display: grid; gap: 1.75rem; }
+.section-note { color: var(--muted); margin: -0.75rem 0 0; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 2rem; }
+.prose { max-width: 65ch; min-width: 0; }
+.prose p { margin: 0 0 1rem; }
+.facts { margin: 0; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.facts div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--line); }
+.facts div:last-child { border-bottom: 0; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; font-weight: 700; text-align: right; }
+
+/* Interests */
+.interests { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem; }
+.interests li { border-top: 4px solid var(--accent); padding-top: 1rem; }
+.interests li:nth-child(2) { border-color: var(--sun); }
+.interests p { color: var(--muted); margin: 0.5rem 0 0; }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.gallery figure { margin: 0; }
+.gallery img, .ph { width: 100%; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+.gallery figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 0.4rem; }
+/* Placeholder colour blocks (delete when you add real photos) */
+.ph-1 { background: linear-gradient(135deg, #0e6a86, #5cc1de); }
+.ph-2 { background: linear-gradient(135deg, #e2a523, #f4d58a); }
+.ph-3 { background: linear-gradient(135deg, #16213a, #4a5b86); }
+.ph-4 { background: linear-gradient(135deg, #5cc1de, #e2a523); }
+.ph-5 { background: linear-gradient(135deg, #4a5b86, #0e6a86); }
+.ph-6 { background: linear-gradient(135deg, #f4d58a, #0e6a86); }
+
+/* Learning */
+.learning-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 1.25rem; border-left: 2px solid var(--line); display: grid; gap: 1.1rem; }
+.timeline li { position: relative; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1.25rem - 7px); top: 0.45em; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+.timeline li:last-child::before { background: var(--sun); }
+.when { display: block; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.code {
+  margin: 0; min-width: 0; overflow-x: auto;
+  background: #0f1522; color: #e8ecf4;
+  border-radius: 12px; padding: 1.25rem 1.4rem;
+  font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.7;
+}
+.code .c { color: #8090ad; } .code .s { color: #f0b93f; } .code .k { color: #5cc1de; }
+
+/* Contact */
+.contact-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.email { font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 700; overflow-wrap: anywhere; }
+.socials { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+
+/* Footer */
+.site-footer { padding-block: 2rem 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+
+/* ---- 6. Phones: stack everything into one column ---- */
+@media (max-width: 720px) {
+  .about-grid, .learning-grid { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .hero { padding-block: 2.5rem 2rem; }
+  .avatar { width: 7rem; height: 7rem; font-size: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; }
+}
